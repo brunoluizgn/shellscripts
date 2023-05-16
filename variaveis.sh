@@ -15,7 +15,7 @@ SAIDA_CAT= "$(cat /etc/passwd | grep bruno)"
 
 echo "SAIDA_CAT"
 
-echo "*---------------------------*"
+echo "*-------------------------*"
 
 echo "parametro 1: $1"
 echo "parametro 2: $2"
