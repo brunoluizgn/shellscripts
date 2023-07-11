@@ -21,3 +21,5 @@ if [ "$VAR" = "$VAR2" ]
 then 
     echo "São iguais"
 fi
+
+[ "$VAR" = "$VAR2" ] && echo "São iguais"
