@@ -7,4 +7,3 @@ find / -iname ".so" \
         -exec ls {} \;
 
 
-

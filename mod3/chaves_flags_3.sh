@@ -18,7 +18,9 @@
 #Histórico:
 #   
 #   v1.0 17/07/2023, Bruno Luiz:
-#   - 
+#   -  adicionado -s, -h, -v
+#   v1.1 17/07/2023. Bruno Luiz:
+#   -  adicionado basename
 #----------------------------------------------------------------------------------------------#
 #Testadi en:
 #   GNU bash, versão 5.0.17(1)-release (x86_64-pc-linux-gnu)
@@ -28,11 +30,18 @@
 #----------------------------------VARIAVEIS----------------------------------------------------#
 USUARIOS="$(cat /etc/passwd | cut -d : -f 1)"
 MENSAGEM_USO="
-$0 - [OPÇÕES]
+$(basename $0) - [OPÇÕES]
 
--h - Menu de ajuda
--v - Versão
--s - Ordernar a saída
+ -h - Menu de ajuda
+ -v - Versão
+ -s - Ordernar a saída
 "
-VERSAO="V1.0"
-echo "$MENSAGEM_USO"
+VERSAO="V1.1"
+
+#----------------------------------------EXECUÇÃO------------------------------------------------------#
+case "$1" in
+-h) echo "$MENSAGEM_USO" && exit 0     ;; 
+-v) echo "$VERSAO" && exit 0           ;;
+-s) echo "$USUARIOS"  | sort && exit 0 ;;
+ *) echo "$USUARIOS"                   ;;
+esac 

@@ -28,11 +28,23 @@
 #----------------------------------VARIAVEIS----------------------------------------------------#
 USUARIOS="$(cat /etc/passwd | cut -d : -f 1)"
 MENSAGEM_USO="
-$0 - [OPÇÕES]
+    $0 - [OPÇÕES]
 
--h - Menu de ajuda
--v - Versão
--s - Ordernar a saída
+ -h - Menu de ajuda
+ -v - Versão
+ -s - Ordernar a saída
 "
 VERSAO="V1.0"
-echo "$MENSAGEM_USO"
+
+#----------------------------------------EXECUÇÃO------------------------------------------------------#
+if [ "$1" = "-h" ]; then 
+    echo "$MENSAGEM_USO" && exit 0
+fi
+if [ "$1" = "-v" ]; then 
+    echo "$VERSAO" && exit 0
+fi
+if [ "$1" = "-s" ]; then 
+    echo "$USUARIOS"  | sort && exit 0
+fi
+
+echo "$USUARIOS"
