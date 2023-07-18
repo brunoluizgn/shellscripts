@@ -47,13 +47,20 @@ CHAVE_ORDENA=0
 CHAVE_MAIUSCULO=0
 
 #----------------------------------------EXECUÇÃO------------------------------------------------------#
-case "$1" in
--h) echo "$MENSAGEM_USO" && exit 0 ;; 
--v) echo "$VERSAO" && exit 0       ;;
--s) CHAVE_ORDENA=1                 ;;
--m) CHAVE_MAIUSCULO=1              ;;
- *) echo "$USUARIOS"               ;;
-esac 
 
-[ $CHAVE_ORDENA -eq 1 ]  && echo "$USUARIOS" | sort 
-[ $CHAVE_MAIUSCULO -eq 1 ]  && echo "$USUARIOS" | tr [a-z] [A-Z]
+while test -n "$1"
+do
+    case "$1" in
+        -h) echo "$MENSAGEM_USO" && exit 0                ;; 
+        -v) echo "$VERSAO" && exit 0                      ;;
+        -s) CHAVE_ORDENA=1                                ;;
+        -m) CHAVE_MAIUSCULO=1                             ;;
+         *) echo "Opção inválida, valide o -h." && exit 1 ;;
+    esac
+    shift
+done     
+
+[ $CHAVE_ORDENA -eq 1 ]     && USUARIOS=$(echo "$USUARIOS" | sort)
+[ $CHAVE_MAIUSCULO -eq 1 ]  && USUARIOS=$(echo "$USUARIOS" | tr [a-z] [A-Z])
+
+echo "$USUARIOS"  
